@@ -1,13 +1,30 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../../public/assets/logo.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
+ 
 
 const Header = () => {
+  const {logOut,user} = useContext(AuthContext)
+
+   const logOuthandler = () => {
+        logOut()
+        .then(() => {
+            
+        })
+        .catch(error=> console.log(error))
+   }
+
         const navitem = <>
           <li><Link to = '/'>Home</Link></li>
           <li><Link>About</Link></li>
           <li><Link>Servies</Link></li>
           <li><Link>Blog</Link></li>
           <li><Link>Contact</Link></li>
+          {
+            user?<li><Link to = '/booking'>My Booking</Link></li>: ''
+          }
+          
            
         </>
         return (
@@ -32,6 +49,14 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
+
+    { user ? <button onClick={logOuthandler} className="btn btn-warning mr-3">
+    <Link to = '/login'>Log Out</Link>
+  </button> :
+  <button className="btn btn-warning mr-3">
+    <Link to = '/login'>Login</Link>
+  </button>}
+
   <button className="btn btn-outline btn-warning">Appointment</button>
   </div>
 </div>
