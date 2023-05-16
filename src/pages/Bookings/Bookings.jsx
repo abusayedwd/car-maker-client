@@ -83,7 +83,7 @@ const handlUpdate = id => {
 
         return (
                 <div className='mb-12'>
-                        <h1>my booking pages : {bookings.length}</h1>
+                        <h1 className='text-3xl font-bold text-center'>my booking pages : {bookings.length}</h1>
                         <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* head */}
