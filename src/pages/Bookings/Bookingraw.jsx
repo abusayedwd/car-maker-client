@@ -1,12 +1,7 @@
-import { useState } from 'react';
-import Swal from 'sweetalert2';
-
+  
 const Bookingraw = ({ booking,bookingDelete, handlUpdate }) => {
         console.log(booking)
-        const { costomername,_id, price, date, email, img, service,status } = booking;
-
-
-
+        const { costomername,_id, price, date, email, img, service,status } = booking; 
 
         return (
 

@@ -10,7 +10,7 @@ const Header = () => {
    const logOuthandler = () => {
         logOut()
         .then(() => {
-            
+           
         })
         .catch(error=> console.log(error))
    }

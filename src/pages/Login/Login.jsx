@@ -1,12 +1,20 @@
- import { Link } from 'react-router-dom';
+ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../../public/assets/images/login/login.svg'
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import SocialLogin from '../SocialL/SocialLogin';
 
 const Login = () => {
         const {signIn} = useContext(AuthContext)
         const [success, setSuccess] = useState('')
         const [error, setError] = useState('')
+
+      const location = useLocation()
+
+      const from = location.state?.from?.pathname || '/';
+      const navigate = useNavigate();
+
+
         const handleLogin = event => {
                 event.preventDefault();
                 const form = event.target; 
@@ -20,6 +28,7 @@ const Login = () => {
                         console.log(loggedUser)
                         setSuccess('Login successfully')
                         setError('')
+                        navigate(from, {replace:true}) 
                 })
                 .catch(error => {
                         console.log(error)
@@ -48,7 +57,7 @@ const Login = () => {
                         <label className="label">
                           <span className="label-text">Password</span>
                         </label>
-                        <input type="text" name='password' placeholder="password" className="input input-bordered" />
+                        <input type="password" name='password' placeholder="password" className="input input-bordered" />
                         <label className="label">
                           <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
@@ -60,6 +69,7 @@ const Login = () => {
                        
                         <input className="btn btn-primary" type="submit" value="Login" />
                  <p className='text-center my-4'>New to car docrtors ? <Link className='text-orange-500 text-xl font-bold' to = '/signup'>SignUp</Link></p>
+                 <SocialLogin></SocialLogin>
                       </div>
                     </div>
                  </form>
